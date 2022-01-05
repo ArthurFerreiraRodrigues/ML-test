@@ -12,7 +12,7 @@ with open("coco.names", "r") as f:
 cap = cv.VideoCapture(0)
 
 ## Carregando os pesos da rede neural
-net = cv.dnn.readNet("yolov4-tiny.weights", "yolov4-tiny.cfg")
+net = cv.dnn.readNet("yolov4.weights", "yolov4.cfg")
 
 ## Settando os parâmetros da rede neural
 model = cv.dnn_DetectionModel(net)
@@ -29,7 +29,7 @@ while True:
 
     for (classid, score, box) in zip(classes, scores, boxes):
         color = COLORS[int(classid) % len(COLORS)]
-        label = f"{class_names[classid[0]]} : {score}"
+        label = f"{class_names[classid]} : {score}"
 
         cv.rectangle(frame, box, color, 2)
 
@@ -48,4 +48,3 @@ while True:
 
 cap.release()
 cv.destroyAllWindows()
-
